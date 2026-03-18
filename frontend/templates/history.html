@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Stress History
+</h2>
+
+
+<!-- CHART SECTION -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Stress Trend
+</h3>
+
+<div class="w-full h-[350px]">
+<canvas id="stressChart"></canvas>
+</div>
+
+</div>
+
+
+
+<!-- TABLE SECTION -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-purple-600 mb-6">
+Report History
+</h3>
+
+<div class="overflow-x-auto">
+
+<table class="min-w-full text-sm">
+
+<thead>
+
+<tr class="bg-slate-50 border-b">
+
+<th class="text-left px-4 py-3 font-semibold text-slate-700">
+Date
+</th>
+
+<th class="text-left px-4 py-3 font-semibold text-slate-700">
+Stress Level
+</th>
+
+<th class="text-left px-4 py-3 font-semibold text-slate-700">
+Score
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for r in reports %}
+
+<tr class="border-b hover:bg-slate-50 transition duration-200">
+
+<td class="px-4 py-3 text-gray-700">
+{{ r.timestamp }}
+</td>
+
+<td class="px-4 py-3 font-medium
+
+{% if r.level == 'Relaxed' %}
+text-green-600
+{% elif r.level == 'Mild Stress' %}
+text-yellow-500
+{% elif r.level == 'Moderate Stress' %}
+text-orange-500
+{% elif r.level == 'High Stress' %}
+text-red-600
+{% endif %}
+
+">
+
+{{ r.level }}
+
+</td>
+
+<td class="px-4 py-3 text-gray-700">
+{{ r.stress_ratio }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHART JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+fetch("/history_data")
+.then(response => response.json())
+.then(data => {
+
+const ctx = document.getElementById("stressChart");
+
+new Chart(ctx, {
+
+type: "line",
+
+data: {
+
+labels: data.labels,
+
+datasets: [{
+
+label: "Stress Score",
+
+data: data.values,
+
+borderColor: "#ef4444",
+
+backgroundColor: "rgba(239,68,68,0.1)",
+
+borderWidth: 3,
+
+tension: 0.4,
+
+fill: true
+
+}]
+
+},
+
+options: {
+
+responsive: true,
+
+plugins: {
+
+legend: {
+
+display: true
+
+}
+
+},
+
+scales: {
+
+y: {
+
+beginAtZero: true,
+
+max: 1
+
+}
+
+}
+
+}
+
+});
+
+});
+
+</script>
+
+{% endblock %}

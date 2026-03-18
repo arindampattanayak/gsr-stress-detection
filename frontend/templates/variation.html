@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Feature Variation
+</h2>
+
+
+<!-- VARIATION TABLE CARD -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-indigo-600 mb-6">
+Signal Feature Analysis
+</h3>
+
+<div class="overflow-x-auto">
+
+<table class="min-w-full text-sm">
+
+<thead>
+
+<tr class="bg-slate-50 border-b">
+
+<th class="text-left px-4 py-3 font-semibold text-slate-700">
+Feature
+</th>
+
+<th class="text-left px-4 py-3 font-semibold text-slate-700">
+Variation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for key, value in variations.items() %}
+
+<tr class="border-b hover:bg-indigo-50 transition duration-200">
+
+<td class="px-4 py-3 text-gray-700 font-medium">
+{{ key }}
+</td>
+
+<td class="px-4 py-3 text-gray-600">
+{{ value }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- BACK BUTTON -->
+
+<div>
+
+<a href="/dashboard">
+
+<button
+class="btn bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+
+Back to Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+{% endblock %}

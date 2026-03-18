@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10 fade-in">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Calibration Parameters
+</h2>
+
+
+<!-- RELAXED FEATURES -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-xl font-semibold text-blue-600 mb-5">
+Relaxed Features
+</h3>
+
+<div class="overflow-x-auto">
+
+<table class="min-w-full text-sm">
+
+<thead>
+
+<tr class="border-b bg-slate-50">
+
+<th class="text-left py-3 px-4 font-semibold text-slate-700">
+Feature
+</th>
+
+<th class="text-left py-3 px-4 font-semibold text-slate-700">
+Value
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for key, value in cal.relaxed_features.items() %}
+
+<tr class="border-b hover:bg-blue-50 transition duration-200">
+
+<td class="py-3 px-4 font-medium text-slate-700">
+{{ key }}
+</td>
+
+<td class="py-3 px-4 text-slate-600">
+{{ value }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- STRESS REFERENCE -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-xl font-semibold text-red-500 mb-5">
+Stress Reference
+</h3>
+
+<div class="overflow-x-auto">
+
+<table class="min-w-full text-sm">
+
+<thead>
+
+<tr class="border-b bg-slate-50">
+
+<th class="text-left py-3 px-4 font-semibold text-slate-700">
+Feature
+</th>
+
+<th class="text-left py-3 px-4 font-semibold text-slate-700">
+Value
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for key, value in cal.stress_reference.items() %}
+
+<tr class="border-b hover:bg-red-50 transition duration-200">
+
+<td class="py-3 px-4 font-medium text-slate-700">
+{{ key }}
+</td>
+
+<td class="py-3 px-4 text-slate-600">
+{{ value }}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

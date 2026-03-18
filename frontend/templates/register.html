@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="flex items-center justify-center min-h-[70vh]">
+
+<div class="bg-white rounded-xl p-8 border border-slate-200 w-full max-w-md card-hover">
+
+<h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">
+Create Account
+</h2>
+
+<form method="POST" class="space-y-5">
+
+<div>
+<input
+type="text"
+name="name"
+placeholder="Full Name"
+required
+class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+</div>
+
+<div>
+<input
+type="email"
+name="email"
+placeholder="Email Address"
+required
+class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+</div>
+
+<div>
+<input
+type="password"
+name="password"
+placeholder="Password"
+required
+class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+</div>
+
+<button
+type="submit"
+class="btn w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
+
+Register
+
+</button>
+
+</form>
+
+<div class="text-center mt-6 text-sm text-gray-600">
+
+Already have an account?
+
+<a href="/login" class="text-blue-600 hover:underline">
+Login
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

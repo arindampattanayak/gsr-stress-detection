@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Live GSR Signal
+</h2>
+
+
+<!-- CONTROL BUTTONS -->
+
+<div class="flex flex-wrap gap-4">
+
+<button onclick="setLabel(0)"
+class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+Relaxed
+</button>
+
+<button onclick="setLabel(1)"
+class="btn bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">
+Stress
+</button>
+
+<button onclick="setLabel(2)"
+class="btn bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+High Stress
+</button>
+
+</div>
+
+
+
+<!-- CHART CARD -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Live Signal Chart
+</h3>
+
+<div class="w-full h-[400px]">
+<canvas id="chart"></canvas>
+</div>
+
+</div>
+
+
+
+<!-- FEATURE METRICS -->
+
+<div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+
+<div class="bg-green-500 text-white rounded-xl p-4 card-hover">
+Mean
+<div class="text-xl font-semibold" id="mean">0</div>
+</div>
+
+<div class="bg-orange-500 text-white rounded-xl p-4 card-hover">
+Std
+<div class="text-xl font-semibold" id="std">0</div>
+</div>
+
+<div class="bg-purple-500 text-white rounded-xl p-4 card-hover">
+Slope
+<div class="text-xl font-semibold" id="slope">0</div>
+</div>
+
+<div class="bg-red-500 text-white rounded-xl p-4 card-hover">
+Peaks
+<div class="text-xl font-semibold" id="peaks">0</div>
+</div>
+
+<div class="bg-blue-500 text-white rounded-xl p-4 card-hover">
+Rise
+<div class="text-xl font-semibold" id="rise">0</div>
+</div>
+
+<div class="bg-cyan-500 text-white rounded-xl p-4 card-hover">
+SCR
+<div class="text-xl font-semibold" id="scr">0</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHART JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+var ctx=document.getElementById('chart').getContext('2d');
+
+var chart=new Chart(ctx,{
+type:'line',
+data:{
+labels:[],
+datasets:[{
+label:'GSR Signal',
+data:[],
+borderColor:"#3b82f6",
+borderWidth:2,
+fill:false,
+tension:0.3
+}]
+},
+options:{
+animation:false,
+responsive:true
+}
+});
+
+
+function updateChart()
+{
+fetch('/get_data')
+.then(r=>r.json())
+.then(data=>{
+
+chart.data.labels=data.map((_,i)=>i);
+chart.data.datasets[0].data=data;
+chart.update();
+
+});
+}
+
+
+function updateFeatures()
+{
+fetch('/get_features')
+.then(r=>r.json())
+.then(d=>{
+
+if(Object.keys(d).length==0)return;
+
+mean.innerText=d.mean.toFixed(4);
+std.innerText=d.std.toFixed(4);
+slope.innerText=d.slope.toFixed(6);
+peaks.innerText=d.peak_count;
+rise.innerText=d.rise_time.toFixed(2);
+scr.innerText=d.scr.toFixed(4);
+
+});
+}
+
+
+function setLabel(label)
+{
+
+fetch('/set_label',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({label:label})
+});
+
+}
+
+
+setInterval(updateChart,500);
+setInterval(updateFeatures,500);
+
+</script>
+
+{% endblock %}

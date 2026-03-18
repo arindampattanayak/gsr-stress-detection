@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Personalized Stress Baseline Calibration
+</h2>
+
+<div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+
+
+<!-- CSV UPLOAD -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Upload CSV Files
+</h3>
+
+<form action="/calibration" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+<div>
+<label class="block text-sm font-medium text-gray-600 mb-1">
+Relaxed Time (CSV)
+</label>
+
+<input type="file" name="relaxed"
+class="w-full border border-gray-300 rounded-lg px-3 py-2">
+</div>
+
+<div>
+<label class="block text-sm font-medium text-gray-600 mb-1">
+Stressed Time (CSV)
+</label>
+
+<input type="file" name="stress"
+class="w-full border border-gray-300 rounded-lg px-3 py-2">
+</div>
+
+<button type="submit"
+class="btn bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 w-full">
+Set From File
+</button>
+
+</form>
+
+</div>
+
+
+
+<!-- AUTO CALIBRATION -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-purple-600 mb-4">
+Auto Calibration (3 Minute Recording)
+</h3>
+
+<p class="text-gray-600 mb-2">
+Step 1: Sit relaxed for 3 minutes
+</p>
+
+<button onclick="startRelaxed()"
+class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+Start Relaxed Recording
+</button>
+
+<p class="text-gray-600 mt-6 mb-2">
+Step 2: Think about something stressful for 3 minutes
+</p>
+
+<button onclick="startStress()"
+class="btn bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+Start Stress Recording
+</button>
+
+<div class="mt-6 font-medium text-gray-700">
+Recording Time:
+<span id="timer" class="text-blue-600 font-semibold">0</span> sec
+</div>
+
+<div class="mt-6">
+
+<canvas id="recordChart" class="w-full"></canvas>
+
+</div>
+
+<button onclick="saveCalibration()"
+class="btn mt-6 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 w-full">
+Save Data
+</button>
+
+</div>
+
+
+
+<!-- LIVE SENSOR -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-orange-600 mb-4">
+Live Sensor Recording
+</h3>
+
+<div class="flex flex-wrap gap-3 mb-6">
+
+<button onclick="setLabel(0)"
+class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+Relaxed
+</button>
+
+<button onclick="setLabel(1)"
+class="btn bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">
+Stress
+</button>
+
+<button onclick="setLabel(2)"
+class="btn bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+High Stress
+</button>
+
+</div>
+
+<div class="mb-6">
+
+<canvas id="chart" class="w-full"></canvas>
+
+</div>
+
+<div class="grid grid-cols-2 gap-4 text-sm text-gray-700">
+
+<div class="bg-slate-50 p-3 rounded-lg">
+Mean: <span id="mean" class="font-semibold">0</span>
+</div>
+
+<div class="bg-slate-50 p-3 rounded-lg">
+Std: <span id="std" class="font-semibold">0</span>
+</div>
+
+<div class="bg-slate-50 p-3 rounded-lg">
+Slope: <span id="slope" class="font-semibold">0</span>
+</div>
+
+<div class="bg-slate-50 p-3 rounded-lg">
+Peaks: <span id="peaks" class="font-semibold">0</span>
+</div>
+
+<div class="bg-slate-50 p-3 rounded-lg">
+Rise: <span id="rise" class="font-semibold">0</span>
+</div>
+
+<div class="bg-slate-50 p-3 rounded-lg">
+SCR: <span id="scr" class="font-semibold">0</span>
+</div>
+
+</div>
+
+<button onclick="downloadCSV()"
+class="btn mt-6 bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 w-full">
+Download Dataset
+</button>
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- CHARTJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="/js/calibration.js"></script>
+<script src="/js/auto_calibration.js"></script>
+
+{% endblock %}

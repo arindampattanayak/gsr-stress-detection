@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Guided Breathing Exercise
+</h2>
+
+<p class="text-gray-600">
+Follow the breathing animation and observe your stress reducing in real-time.
+</p>
+
+
+<!-- BREATHING SECTION -->
+
+<div class="flex flex-col items-center space-y-4">
+
+<!-- Breathing Circle -->
+
+<div id="breathingCircle"
+class="w-44 h-44 rounded-full bg-red-400 flex items-center justify-center text-white text-lg font-semibold transition-all duration-[4000ms] shadow-lg">
+
+Ready
+
+</div>
+
+
+<!-- Countdown -->
+
+<div class="text-4xl font-bold text-blue-600" id="countdown">
+0
+</div>
+
+
+<!-- Cycle Progress -->
+
+<div class="text-gray-600 text-sm">
+Cycle: <span id="cycleProgress" class="font-semibold">0/12</span>
+</div>
+
+
+<!-- Status -->
+
+<div id="breathStatus" class="text-xl font-semibold text-gray-700">
+Press Start
+</div>
+
+
+<!-- Start Button -->
+
+<button onclick="startBreathing()"
+class="btn bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+
+Start Breathing
+
+</button>
+
+</div>
+
+
+
+<!-- LIVE STRESS GRAPH -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover mt-10">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Live Stress Signal (Biofeedback)
+</h3>
+
+<canvas id="stressChart" height="120"></canvas>
+
+<p class="text-sm text-gray-500 mt-2">
+🔴 High Stress &nbsp;&nbsp; 🟠 Medium &nbsp;&nbsp; 🟢 Relaxed
+</p>
+
+</div>
+
+
+
+<!-- RESULT -->
+
+<div id="resultBox"
+class="hidden bg-green-50 border border-green-200 p-5 rounded-lg text-center">
+
+<h3 class="text-lg font-semibold text-green-700">
+Relaxation Result
+</h3>
+
+<p id="relaxResult" class="mt-2 text-gray-700"></p>
+
+</div>
+
+
+</div>
+
+
+<!-- SCRIPTS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/breathing.js"></script>
+
+{% endblock %}

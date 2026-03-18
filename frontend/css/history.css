@@ -1,0 +1,85 @@
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(135deg,#eef2f7,#cfd9df);
+margin:0;
+padding:0;
+}
+
+.history-container{
+width:80%;
+margin:auto;
+margin-top:40px;
+}
+
+.title{
+text-align:center;
+color:#2c3e50;
+margin-bottom:25px;
+}
+
+/* Chart */
+
+.chart-box{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+margin-bottom:30px;
+}
+
+/* Table */
+
+.table-box{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.history-table{
+width:100%;
+border-collapse:collapse;
+}
+
+.history-table th{
+background:#3a7bd5;
+color:white;
+padding:12px;
+text-align:center;
+}
+
+.history-table td{
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+.history-table tr:nth-child(even){
+background:#f9f9f9;
+}
+
+.history-table tr:hover{
+background:#eef4ff;
+}
+
+/* Stress Level Colors */
+
+.relaxed{
+color:green;
+font-weight:bold;
+}
+
+.mild{
+color:#f1c40f;
+font-weight:bold;
+}
+
+.moderate{
+color:#e67e22;
+font-weight:bold;
+}
+
+.high{
+color:red;
+font-weight:bold;
+}

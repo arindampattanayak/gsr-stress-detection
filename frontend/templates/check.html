@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="space-y-10">
+
+<h2 class="text-3xl font-semibold text-slate-800">
+Stress Check
+</h2>
+
+<form id="stressForm"
+action="/check"
+method="POST"
+enctype="multipart/form-data"
+class="grid lg:grid-cols-2 gap-8">
+
+
+<!-- BASELINE CARD -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Baseline Source
+</h3>
+
+<div class="space-y-3">
+
+<label class="flex items-center gap-2">
+<input type="radio"
+name="baseline_source"
+value="saved"
+checked
+class="accent-blue-600">
+Use Saved Baseline
+</label>
+
+<label class="flex items-center gap-2">
+<input type="radio"
+name="baseline_source"
+value="upload"
+class="accent-blue-600">
+Upload Relaxed CSV
+</label>
+
+<input type="file"
+name="baseline_file"
+class="mt-3 w-full border border-gray-300 rounded-lg px-3 py-2">
+
+</div>
+
+</div>
+
+
+
+<!-- TEST SIGNAL CARD -->
+
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-purple-600 mb-4">
+Test Signal
+</h3>
+
+<div class="space-y-4">
+
+<label class="flex items-center gap-2">
+<input type="radio"
+name="test_source"
+value="file"
+checked
+class="accent-purple-600">
+Upload CSV
+</label>
+
+<input type="file"
+name="test"
+class="w-full border border-gray-300 rounded-lg px-3 py-2">
+
+<label class="flex items-center gap-2 mt-4">
+<input type="radio"
+name="test_source"
+value="live"
+class="accent-purple-600">
+Live Sensor (40 sec)
+</label>
+
+</div>
+
+
+<!-- LIVE SENSOR CONTROLS -->
+
+<div class="flex gap-3 mt-6">
+
+<button type="button"
+onclick="startLive()"
+class="btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+Start
+</button>
+
+<button type="button"
+onclick="stopLive()"
+class="btn bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+Stop
+</button>
+
+</div>
+
+
+<!-- TIMER -->
+
+<div class="mt-6 text-gray-700 font-medium">
+
+Timer:
+<span id="timer" class="text-blue-600 font-semibold">0</span>
+
+</div>
+
+
+<!-- STATUS -->
+
+<div id="status"
+class="mt-3 text-sm text-gray-600">
+</div>
+
+<input type="hidden" name="live_data" id="live_data">
+
+
+<button type="submit"
+class="btn mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 w-full">
+Check Stress
+</button>
+
+</div>
+
+
+</form>
+
+</div>
+
+
+<script src="/js/check.js"></script>
+
+{% endblock %}

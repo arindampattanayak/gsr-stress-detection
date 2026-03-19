@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-xl">
+
+<h2 class="text-xl md:text-2xl font-semibold text-slate-800 mb-2">
+⚡ Quick Stress Check
+</h2>
+
+<p class="text-xs md:text-sm text-gray-500 mb-6">
+Using general baseline (less accurate)
+</p>
+
+<!-- BUTTONS -->
+<div class="flex flex-col sm:flex-row gap-3 justify-center">
+
+<button onclick="startLive()"
+class="w-full sm:w-auto bg-green-500 text-white px-5 py-3 rounded-lg">
+Start
+</button>
+
+<button onclick="stopLive()"
+class="w-full sm:w-auto bg-red-500 text-white px-5 py-3 rounded-lg">
+Stop
+</button>
+
+</div>
+
+<!-- TIMER -->
+<div class="text-center mt-6 text-lg md:text-xl font-medium">
+Timer:
+<span id="timer" class="text-blue-600 font-bold">0</span> sec
+</div>
+
+<!-- STATUS -->
+<div id="status" class="text-center text-gray-600 text-sm mt-2"></div>
+
+<form method="POST">
+
+<input type="hidden" name="live_data" id="live_data">
+<input type="hidden" name="test_source" value="live">
+
+<button type="submit"
+class="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg">
+Check Stress
+</button>
+
+</form>
+
+</div>
+</div>
+
+<script src="/js/quick_check.js"></script>
+
+{% endblock %}

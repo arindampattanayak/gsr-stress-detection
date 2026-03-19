@@ -7,157 +7,90 @@
 Stress Detection Dashboard
 </h2>
 
-
 <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
 
-
 <!-- CALIBRATION -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-blue-600 mb-3">
-Calibration Setup
-</h3>
-
+<h3 class="text-lg font-semibold text-blue-600 mb-3">Initial Setup</h3>
 <p class="text-gray-600 mb-4">
 Set personalized baseline using relaxed and stressed signals.
 </p>
-
 <a href="/calibration"
 class="btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
 Start Setting
 </a>
-
 </div>
 
-
-
 <!-- CHECK STRESS -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-purple-600 mb-3">
-Check Stress
-</h3>
-
+<h3 class="text-lg font-semibold text-purple-600 mb-3">Check Stress</h3>
 <p class="text-gray-600 mb-4">
 Analyze stress level using signal data.
 </p>
-
 <a href="/check">
-
 <button class="btn bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
 Check Stress
 </button>
-
 </a>
-
 </div>
 
-
-
 <!-- HISTORY -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-green-600 mb-3">
-Stress History
-</h3>
-
+<h3 class="text-lg font-semibold text-green-600 mb-3">Stress History</h3>
 <p class="text-gray-600 mb-4">
 View previous stress reports and analytics.
 </p>
-
 <a href="/history"
 class="btn bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
 View History
 </a>
-
 </div>
 
-
-
 <!-- FEATURE VARIATION -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-orange-600 mb-3">
-Feature Variation
-</h3>
-
+<h3 class="text-lg font-semibold text-orange-600 mb-3">Feature Variation</h3>
 <p class="text-gray-600 mb-4">
 Analyze signal feature variations.
 </p>
 
 <form action="/variation" method="POST" enctype="multipart/form-data" class="space-y-3">
-
-<input type="file"
-name="test"
-required
+<input type="file" name="test" required
 class="w-full border border-gray-300 rounded-lg px-3 py-2">
 
 <button class="btn bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 w-full">
 Analyze Variation
 </button>
-
 </form>
-
 </div>
-
-
 
 <!-- CALIBRATION DATA -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-indigo-600 mb-3">
-Calibration Data
-</h3>
-
+<h3 class="text-lg font-semibold text-indigo-600 mb-3">Threshold Data</h3>
 <p class="text-gray-600 mb-4">
-View stored calibration parameters.
+View stored Threshold parameters.
 </p>
-
 <a href="/calibration_data"
 class="btn bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-View Calibration
+View Threshold Values
 </a>
-
 </div>
 
-
-</div>
-
-
-<!-- LOGOUT -->
-
-<div>
-
-<a href="/logout"
-class="text-red-500 hover:text-red-600 font-medium transition">
-Logout
-</a>
-
-</div>
+<!-- ✅ GUIDED BREATHING (FIXED POSITION) -->
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-cyan-600 mb-3">
-Guided Breathing
-</h3>
-
+<h3 class="text-lg font-semibold text-cyan-600 mb-3">Guided Breathing</h3>
 <p class="text-gray-600 mb-4">
 Practice a 3-minute breathing exercise to reduce stress.
 </p>
 
 <a href="/breathing">
-
 <button class="btn bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700">
 Start Exercise
 </button>
-
 </a>
+</div>
 
 </div>
+
 </div>
 
 {% endblock %}

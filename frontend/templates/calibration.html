@@ -4,57 +4,17 @@
 <div class="space-y-10">
 
 <h2 class="text-3xl font-semibold text-slate-800">
-Personalized Stress Baseline Calibration
+Personalized Stress Baseline Setup
 </h2>
 
 <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
 
 
-<!-- CSV UPLOAD -->
-
-<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
-
-<h3 class="text-lg font-semibold text-blue-600 mb-4">
-Upload CSV Files
-</h3>
-
-<form action="/calibration" method="POST" enctype="multipart/form-data" class="space-y-4">
-
-<div>
-<label class="block text-sm font-medium text-gray-600 mb-1">
-Relaxed Time (CSV)
-</label>
-
-<input type="file" name="relaxed"
-class="w-full border border-gray-300 rounded-lg px-3 py-2">
-</div>
-
-<div>
-<label class="block text-sm font-medium text-gray-600 mb-1">
-Stressed Time (CSV)
-</label>
-
-<input type="file" name="stress"
-class="w-full border border-gray-300 rounded-lg px-3 py-2">
-</div>
-
-<button type="submit"
-class="btn bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 w-full">
-Set From File
-</button>
-
-</form>
-
-</div>
-
-
-
 <!-- AUTO CALIBRATION -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
 
 <h3 class="text-lg font-semibold text-purple-600 mb-4">
-Auto Calibration (3 Minute Recording)
+Auto Setup (3 Minute Recording)
 </h3>
 
 <p class="text-gray-600 mb-2">
@@ -81,9 +41,7 @@ Recording Time:
 </div>
 
 <div class="mt-6">
-
 <canvas id="recordChart" class="w-full"></canvas>
-
 </div>
 
 <button onclick="saveCalibration()"
@@ -96,7 +54,6 @@ Save Data
 
 
 <!-- LIVE SENSOR -->
-
 <div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
 
 <h3 class="text-lg font-semibold text-orange-600 mb-4">
@@ -123,9 +80,7 @@ High Stress
 </div>
 
 <div class="mb-6">
-
 <canvas id="chart" class="w-full"></canvas>
-
 </div>
 
 <div class="grid grid-cols-2 gap-4 text-sm text-gray-700">
@@ -164,12 +119,49 @@ Download Dataset
 </div>
 
 
+
+<!-- ✅ CSV UPLOAD (MOVED TO END) -->
+<div class="bg-white rounded-xl p-6 border border-slate-200 card-hover">
+
+<h3 class="text-lg font-semibold text-blue-600 mb-4">
+Upload CSV Files
+</h3>
+
+<form action="/calibration" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+<div>
+<label class="block text-sm font-medium text-gray-600 mb-1">
+Relaxed Time (CSV)
+</label>
+
+<input type="file" name="relaxed"
+class="w-full border border-gray-300 rounded-lg px-3 py-2">
+</div>
+
+<div>
+<label class="block text-sm font-medium text-gray-600 mb-1">
+Stressed Time (CSV)
+</label>
+
+<input type="file" name="stress"
+class="w-full border border-gray-300 rounded-lg px-3 py-2">
+</div>
+
+<button type="submit"
+class="btn bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 w-full">
+Set From File
+</button>
+
+</form>
+
+</div>
+
+
 </div>
 </div>
 
 
 <!-- CHARTJS -->
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="/js/calibration.js"></script>

@@ -6,7 +6,7 @@ let timer=0
 let interval=null
 
 // RECORDING TIME (seconds)
-const RECORD_TIME = 100
+const RECORD_TIME = 180
 
 const autoCtx=document.getElementById("recordChart").getContext("2d")
 
